@@ -24,13 +24,17 @@ const seedDB = async () => {
         const city = randomElement(cities)
         const camp = new Campground({
             location: `${city.city}, ${city.state}`,
-            title: `${randomElement(descriptors)} ${randomElement(places)}`
+            title: `${randomElement(descriptors)} ${randomElement(places)}`,
+            image: 'https://source.unsplash.com/collection/483251/1600x900',
+            price: randomInteger(100) + 30,
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut aperiam ducimus, et nesciunt harum rem culpa nostrum perspiciatis eveniet neque!'
         })
         await camp.save()
     }
 }
 
-const randomElement = ( arr ) => arr[ Math.floor( Math.random() * arr.length) ]
+const randomInteger = (integer) => Math.floor( Math.random() * integer)
+const randomElement = ( arr ) => arr[  randomInteger(arr.length) ]
 
 
 seedDB()
